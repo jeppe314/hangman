@@ -3,11 +3,33 @@
   padding: 0;
 }
 
+body {
+  color: white;
+}
+
 .app {
-  background-color: gray;
+  background-color: rgb(8, 8, 8);
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.start {
+  display:flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+button {
+  text-align: center;
+  padding: .5em;
+  font-weight: bold;
+  font-size: 1.5em;
+  border-radius: 10px;
+  background-color: rgb(8,8,8);
+  color: white;
+  border: 5px solid white;
+  cursor: pointer;
 }
