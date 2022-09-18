@@ -5,23 +5,24 @@ import Game from "./Game.js"
 
 function App() {
   const [gameState, setGameState] = useState(0)
-  const [game, setGame] = useState({})
-  const [numGuesses, setNumGuesses] = useState(7)
+  const [guessesLeft, setGuessesLeft] = useState(10)
+  const [game, setGame] = useState({
+    letters: [],
+    guesses: [],
+    wrongLetters: [],
+  })
 
   function startGame() {
     fetch("https://api.api-ninjas.com/v1/randomword?type=noun")
       .then((res) => res.json())
       .then((data) =>
-        setGame({
+        setGame((prevState) => ({
+          ...prevState,
           letters: [...data.word.toUpperCase()],
-          guesses: [],
-          wrongLetters: [],
-        })
+        }))
       )
     setGameState(1)
   }
-
-  
 
   const startPage = (
     <div className="start">
@@ -30,7 +31,15 @@ function App() {
     </div>
   )
 
-  const renderGame = <Game game={game} setGame={setGame} word={game.letters} />
+  const renderGame = (
+    <Game
+      game={game}
+      guessesLeft={guessesLeft}
+      setGuessesLeft={setGuessesLeft}
+      setGame={setGame}
+      word={game.letters}
+    />
+  )
 
   return (
     <div className="app">
