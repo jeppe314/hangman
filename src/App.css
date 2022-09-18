@@ -52,6 +52,7 @@ button {
 
 .tile {
   border-bottom: 4px solid white;
+  width: 2em;
   padding: 0.2em;
   border-radius: 0.2em;
   display: flex;
@@ -61,17 +62,21 @@ button {
   display: none;
 }
 
+.show {
+  display: flex;
+}
+
 .keyboard {
   width: 100%;
   margin-top: 2em;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: .3em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .2em;
 }
 
 .key {
-  font-size: 1em;
+  font-size: 1.5em;
   background-color: rgb(51, 45, 45);
   padding: .3em;
   text-align: center;

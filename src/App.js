@@ -1,10 +1,12 @@
 import "./App.css"
 import { React, useState } from "react"
+
 import Game from "./Game.js"
 
 function App() {
   const [gameState, setGameState] = useState(0)
   const [game, setGame] = useState({})
+  const [numGuesses, setNumGuesses] = useState(7)
 
   function startGame() {
     fetch("https://api.api-ninjas.com/v1/randomword?type=noun")
@@ -12,13 +14,14 @@ function App() {
       .then((data) =>
         setGame({
           letters: [...data.word.toUpperCase()],
-          guessedLetters: [],
+          guesses: [],
           wrongLetters: [],
         })
       )
-    console.log(game)
     setGameState(1)
   }
+
+  
 
   const startPage = (
     <div className="start">
@@ -27,7 +30,7 @@ function App() {
     </div>
   )
 
-  const renderGame = <Game word={game.letters} />
+  const renderGame = <Game game={game} setGame={setGame} word={game.letters} />
 
   return (
     <div className="app">

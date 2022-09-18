@@ -1,6 +1,7 @@
+import { nanoid } from "nanoid"
 import React from "react"
 
-export default function Keyboard() {
+export default function Keyboard(props) {
   const keyboardLetters = [
     "Q",
     "W",
@@ -30,10 +31,20 @@ export default function Keyboard() {
     "M",
   ]
 
+  function handleClick(key) {
+    props.handleClick(key)
+  }
+
   const keyboardElements = keyboardLetters.map((letter) => {
-    return <div className="key">
-      <h3>{letter}</h3>
-    </div>
+    const styles = {
+      opacity: props.game.guesses.includes(letter) ? "0.5" : "1",
+    }
+
+    return (
+      <div className="key" key={nanoid()} style={styles} onClick={() => handleClick(letter)}>
+        <h3>{letter}</h3>
+      </div>
+    )
   })
 
   return <div className="keyboard">{keyboardElements}</div>
