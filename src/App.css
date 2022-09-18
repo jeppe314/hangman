@@ -7,6 +7,18 @@ body {
   color: white;
 }
 
+button {
+  text-align: center;
+  padding: .5em;
+  font-weight: bold;
+  font-size: 1.5em;
+  border-radius: 10px;
+  background-color: rgb(8,8,8);
+  color: white;
+  border: 5px solid white;
+  cursor: pointer;
+}
+
 .app {
   background-color: rgb(8, 8, 8);
   height: 100vh;
@@ -22,14 +34,26 @@ body {
   gap: 1em;
 }
 
-button {
-  text-align: center;
-  padding: .5em;
-  font-weight: bold;
-  font-size: 1.5em;
-  border-radius: 10px;
-  background-color: rgb(8,8,8);
-  color: white;
-  border: 5px solid white;
-  cursor: pointer;
+.game-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.word {
+  font-size: 1em;
+  display:flex;
+  gap: .2em;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tile {
+  border-bottom: 4px solid white;
+  padding: .2em;
+  border-radius: .2em;
+  display: flex;
+}
+
+.no-show {
+  display: none;
 }

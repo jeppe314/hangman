@@ -1,6 +1,7 @@
 import "./App.css"
 import { React, useState } from "react"
 import Tile from "./Tile.js"
+import Game from "./Game.js"
 
 function App() {
   const [gameState, setGameState] = useState(0)
@@ -29,7 +30,7 @@ function App() {
 
   return <div className="app">
     {gameState === 0 && startPage}
-    {gameState === 1 && game.letters ? game.letters.map(letter => <Tile letter={letter} />) : ""}
+    {gameState === 1 && game.letters ? <Game word={game.letters} /> : ""}
     </div>
 }
 
