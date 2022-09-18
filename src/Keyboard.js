@@ -31,6 +31,12 @@ export default function Keyboard(props) {
     "M",
   ]
 
+  document.addEventListener("keyup", (e) => handleKeyPress(e))
+
+  function handleKeyPress(e) {
+    props.handleClick(e.key.toUpperCase())
+  }
+
   function handleClick(key) {
     props.handleClick(key)
   }

@@ -5,15 +5,6 @@ import { nanoid } from "nanoid"
 
 export default function Game(props) {
 
-
-  
-  document.addEventListener("keyup", (e) => handleKeyPress(e))
-
-  function handleKeyPress(e) {
-    handleKeyClick(e.key.toUpperCase())
-    console.log(props.game)
-  }
-
   function handleKeyClick(key) {
     props.setGame((prevState) => ({
       ...prevState,
@@ -21,6 +12,7 @@ export default function Game(props) {
       wrongLetters: prevState.letters.includes(key) ? [...prevState.wrongLetters] : [...prevState.wrongLetters, key]
     }))
     props.setGuessesLeft(prevGuesses => (prevGuesses - 1))
+    console.log(props.game)
   }
 
   const word = (

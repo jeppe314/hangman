@@ -34,9 +34,9 @@ function App() {
   const renderGame = (
     <Game
       game={game}
+      setGame={setGame}
       guessesLeft={guessesLeft}
       setGuessesLeft={setGuessesLeft}
-      setGame={setGame}
       word={game.letters}
     />
   )
