@@ -1,11 +1,11 @@
-import './App.css';
+import "./App.css"
+import { React, useState } from "react"
+import Start from "./Start.js"
 
 function App() {
-  return (
-    <div>
-      <h3>Hello</h3>
-    </div>
-  );
+  const [gameState, setGameState] = useState(0)
+
+  return <div className="app">{gameState === 0 && <Start />}</div>
 }
 
-export default App;
+export default App
