@@ -1,5 +1,6 @@
 import "./App.css"
 import { React, useState } from "react"
+import Tile from "./Tile.js"
 
 function App() {
   const [gameState, setGameState] = useState(0)
@@ -26,7 +27,10 @@ function App() {
     </div>
   )
 
-  return <div className="app">{gameState === 0 && startPage}</div>
+  return <div className="app">
+    {gameState === 0 && startPage}
+    {gameState === 1 && game.letters ? game.letters.map(letter => <Tile letter={letter} />) : ""}
+    </div>
 }
 
 export default App
