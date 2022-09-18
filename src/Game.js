@@ -1,5 +1,6 @@
 import React from "react"
 import Tile from "./Tile.js"
+import Keyboard from "./Keyboard.js"
 
 export default function Game(props) {
   const word = (
@@ -10,5 +11,6 @@ export default function Game(props) {
 
   return <div className="game-container">
     {word}
+    <Keyboard />
     </div>
 }

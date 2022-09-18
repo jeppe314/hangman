@@ -1,6 +1,5 @@
 import "./App.css"
 import { React, useState } from "react"
-import Tile from "./Tile.js"
 import Game from "./Game.js"
 
 function App() {
@@ -10,15 +9,15 @@ function App() {
   function startGame() {
     fetch("https://api.api-ninjas.com/v1/randomword?type=noun")
       .then((res) => res.json())
-      .then((data) => setGame(
-        {
+      .then((data) =>
+        setGame({
           letters: [...data.word.toUpperCase()],
           guessedLetters: [],
           wrongLetters: [],
-        }
-      ))
-      console.log(game)
-      setGameState(1)
+        })
+      )
+    console.log(game)
+    setGameState(1)
   }
 
   const startPage = (
@@ -28,10 +27,14 @@ function App() {
     </div>
   )
 
-  return <div className="app">
-    {gameState === 0 && startPage}
-    {gameState === 1 && game.letters ? <Game word={game.letters} /> : ""}
+  const renderGame = <Game word={game.letters} />
+
+  return (
+    <div className="app">
+      {gameState === 0 && startPage}
+      {gameState === 1 && game.letters ? renderGame : ""}
     </div>
+  )
 }
 
 export default App
