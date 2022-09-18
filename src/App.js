@@ -5,11 +5,13 @@ import Game from "./Game.js"
 
 function App() {
   const [gameState, setGameState] = useState(0)
-  const [guessesLeft, setGuessesLeft] = useState(10)
+  const [guessesLeft, setGuessesLeft] = useState(20)
+  const [hasWon, setHasWon] = useState(false)
   const [game, setGame] = useState({
     letters: [],
     guesses: [],
-    wrongLetters: [],
+    wrongGuesses: [],
+    correctGuesses: [],
   })
 
   function startGame() {
@@ -22,6 +24,11 @@ function App() {
         }))
       )
     setGameState(1)
+  }
+
+  function winGame() {
+    console.log("WON")
+    setHasWon(true)
   }
 
   const startPage = (
@@ -37,6 +44,8 @@ function App() {
       setGame={setGame}
       guessesLeft={guessesLeft}
       setGuessesLeft={setGuessesLeft}
+      winGame={() => winGame()}
+      hasWon={hasWon}
       word={game.letters}
     />
   )
@@ -44,7 +53,7 @@ function App() {
   return (
     <div className="app">
       {gameState === 0 && startPage}
-      {gameState === 1 && game.letters ? renderGame : ""}
+      {gameState === 1 && renderGame}
     </div>
   )
 }

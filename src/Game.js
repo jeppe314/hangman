@@ -9,10 +9,18 @@ export default function Game(props) {
     props.setGame((prevState) => ({
       ...prevState,
       guesses: [...prevState.guesses, key],
-      wrongLetters: prevState.letters.includes(key) ? [...prevState.wrongLetters] : [...prevState.wrongLetters, key]
+      wrongGuesses: prevState.letters.includes(key) ? [...prevState.wrongGuesses] : [...prevState.wrongGuesses, key],
+      correctGuesses: prevState.letters.includes(key) ? [...prevState.correctGuesses, key] : [...prevState.correctGuesses]
     }))
+    checkWin()
     props.setGuessesLeft(prevGuesses => (prevGuesses - 1))
     console.log(props.game)
+  }
+
+  function checkWin() {
+      if(props.game.letters.every(letter => props.game.correctGuesses.includes(letter))) {
+        props.winGame()
+    } else return
   }
 
   const word = (
@@ -25,9 +33,13 @@ export default function Game(props) {
 
   return (
     <div className="game-container">
+      <h3>{props.guessesLeft}</h3>
       {word}
-      {props.guessesLeft > 0 && <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />}
-      {props.guessesLeft <= 0 && <h1>GAME OVER</h1>}
+      {!props.hasWon && (
+        <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />
+      )}
+      {props.hasWon === true && <h1>YOU WIN</h1>}
+      {props.guessesLeft === 0 && <h1>GAME OVER</h1>}
     </div>
   )
 }

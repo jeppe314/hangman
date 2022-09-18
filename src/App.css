@@ -35,7 +35,9 @@ button {
 }
 
 .game-container {
+  height: 100%;
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 1em;
