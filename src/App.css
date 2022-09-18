@@ -72,12 +72,13 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: .2em;
+  gap: 0.2em;
+  cursor: pointer;
 }
 
 .key {
   font-size: 1.5em;
   background-color: rgb(51, 45, 45);
-  padding: .3em;
+  padding: 0.3em;
   text-align: center;
 }

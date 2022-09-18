@@ -4,15 +4,19 @@ import Keyboard from "./Keyboard.js"
 import { nanoid } from "nanoid"
 
 export default function Game(props) {
+  document.addEventListener("keyup", handleKeyPress, true)
+
+  function handleKeyPress(e) {
+    handleKeyClick(e.key.toUpperCase())
+  }
+
   function handleKeyClick(key) {
     console.log(key)
     console.log(props.game.letters)
-    props.setGame(prevState => (
-      {
-        ...prevState,
-        guesses: [...prevState.guesses, key]
-      }
-    ))
+    props.setGame((prevState) => ({
+      ...prevState,
+      guesses: [...prevState.guesses, key],
+    }))
     console.log(props.game)
   }
 
@@ -27,7 +31,7 @@ export default function Game(props) {
   return (
     <div className="game-container">
       {word}
-      <Keyboard handleClick={(key) => handleKeyClick(key)} key={nanoid()} game={props.game} />
+      <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />
     </div>
   )
 }
