@@ -48,11 +48,12 @@ export default function Game(props) {
   return (
     <div className="game-container">
       <h3>Guesses left: {props.guessesLeft}</h3>
-      {word}
-      {!props.hasWon && (
-        <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />
-      )}
-      
+      <div>
+        {word}
+        {!props.hasWon && (
+          <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />
+        )}
+      </div>
     </div>
   )
 }

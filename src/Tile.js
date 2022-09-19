@@ -4,7 +4,7 @@ import React from "react"
 export default function Tile(props) {
   return (
     <div className="tile">
-      <h3
+      <p
         className={
           props.game.letters.includes(props.letter) &&
           props.game.guesses.includes(props.letter)
@@ -13,7 +13,7 @@ export default function Tile(props) {
         }
       >
         {props.letter}
-      </h3>
+      </p>
     </div>
   )
 }

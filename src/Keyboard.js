@@ -43,7 +43,8 @@ export default function Keyboard(props) {
     console.log("KEY PRESSED")
     if (e.keyCode >= 65 && e.keyCode <= 90) {
       props.handleClick(e.key.toUpperCase())
-  }}
+    }
+  }
 
   function handleClick(key) {
     props.handleClick(key)
@@ -51,7 +52,7 @@ export default function Keyboard(props) {
 
   const keyboardElements = keyboardLetters.map((letter) => {
     const styles = {
-      opacity: props.game.guesses.includes(letter) ? "0.5" : "1",
+      opacity: props.game.guesses.includes(letter) ? "0.3" : "1",
     }
 
     return (
