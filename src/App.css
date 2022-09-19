@@ -1,10 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600;700&family=Permanent+Marker&family=Shadows+Into+Light&display=swap");
+
 * {
   margin: 0;
   padding: 0;
 }
 
+/*FONTS*/
+.letter {
+  font-family: "Shadows Into Light", cursive;
+}
+
 body {
   color: white;
+  background: #63856a;
+  background: -webkit-radial-gradient(center, ellipse cover, #63856a 1%, #3c5a40 100%);
+  display:flex;
+  justify-content: center;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
 }
 
 button {
@@ -19,28 +39,50 @@ button {
   cursor: pointer;
 }
 
-.app {
-  background-color: rgb(8, 8, 8);
-  height: 100vh;
+button:hover {
+  background-color: white;
+  color: black;
+}
+
+.start-container {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  gap: 1em;
+  text-align: center;
 }
 
-.start {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+.hangman-image {
+  height: 35%;
+  margin: 3em 0;
 }
 
 .game-container {
   height: 100%;
   display: flex;
   justify-content: space-between;
+  align-content: center;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 1em;
+}
+
+.game-container h1 {
+  text-align: center;
+}
+
+.postGame-container {
+  height: 100%;
+  padding: 4em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.postGame-container div {
+  text-align: center;
 }
 
 .word {
@@ -55,9 +97,10 @@ button {
 .tile {
   border-bottom: 4px solid white;
   width: 2em;
-  padding: 0.2em;
   border-radius: 0.2em;
   display: flex;
+  flex: 0 1 auto;
+  justify-content: center;
 }
 
 .no-show {

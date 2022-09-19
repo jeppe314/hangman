@@ -1,41 +1,49 @@
 import { nanoid } from "nanoid"
-import React from "react"
+import React, { useEffect } from "react"
 
 export default function Keyboard(props) {
   const keyboardLetters = [
-    "Q",
-    "W",
-    "E",
-    "R",
-    "T",
-    "Y",
-    "U",
-    "I",
-    "O",
-    "P",
     "A",
-    "S",
+    "B",
+    "C",
     "D",
+    "E",
     "F",
     "G",
     "H",
+    "I",
     "J",
     "K",
     "L",
-    "Z",
-    "X",
-    "C",
-    "V",
-    "B",
-    "N",
     "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
   ]
 
-  document.addEventListener("keyup", (e) => handleKeyPress(e))
+  //Eventlistener, finally preventing infinite loop. Not sure how.
+  useEffect(() => {
+    document.addEventListener("keyup", handleKeyPress)
+    return () => {
+      document.removeEventListener("keyup", handleKeyPress)
+    }
+  })
 
   function handleKeyPress(e) {
-    props.handleClick(e.key.toUpperCase())
-  }
+    console.log("KEY PRESSED")
+    if (e.keyCode >= 65 && e.keyCode <= 90) {
+      props.handleClick(e.key.toUpperCase())
+  }}
 
   function handleClick(key) {
     props.handleClick(key)
@@ -48,7 +56,7 @@ export default function Keyboard(props) {
 
     return (
       <div className="key" key={nanoid()} style={styles} onClick={() => handleClick(letter)}>
-        <h3>{letter}</h3>
+        <h2>{letter}</h2>
       </div>
     )
   })

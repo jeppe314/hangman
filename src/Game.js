@@ -5,10 +5,12 @@ import { nanoid } from "nanoid"
 
 export default function Game(props) {
   function handleKeyClick(key) {
+    //Makes sure same key isnt pressed multiple times
     if (props.game.guesses.includes(key)) {
       console.log("already clicked")
       return
     } else {
+      //Otherwise updates state
       props.setGame((prevState) => ({
         ...prevState,
         guesses: [...prevState.guesses, key],
@@ -19,22 +21,20 @@ export default function Game(props) {
           ? [...prevState.correctGuesses, key]
           : [...prevState.correctGuesses],
       }))
-      checkWin()
-      props.setGuessesLeft((prevGuesses) => prevGuesses - 1)
-      console.log(props.game)
+
+      //Checks if user has won (still doesnt update immediately, only after one more letter click)
+      if (props.game.letters.every((letter) => props.game.correctGuesses.includes(letter))) {
+        props.setHasWon(true)
+        props.setGameState(2)
+        console.log("YOU WIN")
+        console.log(props.hasWon)
+      } else {
+        props.setGuessesLeft((prevGuesses) => prevGuesses - 1)
+        if (props.guessesLeft === 0) {
+          props.setGameState(2)
+        } else return
+      }
     }
-  }
-
-  function checkWin() {
-    if (props.game.letters.every((letter) => props.game.correctGuesses.includes(letter))) {
-      console.log("checkwin")
-      winGame()
-    } else return
-  }
-
-  function winGame() {
-    console.log("WON")
-    props.setHasWon(true)
   }
 
   const word = (
@@ -47,20 +47,23 @@ export default function Game(props) {
 
   return (
     <div className="game-container">
-      <h3>{props.guessesLeft}</h3>
+      <h3>Guesses left: {props.guessesLeft}</h3>
       {word}
       {!props.hasWon && (
         <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />
       )}
       {props.hasWon && <h1>YOU WIN</h1>}
-      {props.guessesLeft === 0 && <h1>GAME OVER</h1>}
+      {props.guessesLeft <= 0 && <h1>GAME OVER</h1>}
+      
     </div>
   )
 }
 
 //TODO:
-// DISABLE MULTIPLE CLICKS ON SAME KEY = DONE
+// DONE // DISABLE MULTIPLE CLICKS ON SAME KEY
+// TILES SHOULDNT GENERATE NEW KEY EVERY RERENDER
 // MAKE THE WIN / LOSE MESSAGE SHOW UP NOT ONE CLICK LATE
 // FIND A BETTER API
 // UPDATE CSS
 // FIND A SOLUTION TO THE INFINITE LOOP ON KEY PRESS...
+// ADD PLAY AGAIN BUTTON
