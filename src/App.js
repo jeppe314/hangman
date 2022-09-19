@@ -26,10 +26,10 @@ function App() {
     setGameState(1)
   }
 
-  function winGame() {
-    console.log("WON")
-    setHasWon(true)
-  }
+  // function winGame() {
+  //   console.log("WON")
+  //   setHasWon(true)
+  // }
 
   const startPage = (
     <div className="start">
@@ -44,8 +44,9 @@ function App() {
       setGame={setGame}
       guessesLeft={guessesLeft}
       setGuessesLeft={setGuessesLeft}
-      winGame={() => winGame()}
+      // winGame={() => winGame()}
       hasWon={hasWon}
+      setHasWon={setHasWon}
       word={game.letters}
     />
   )
