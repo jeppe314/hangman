@@ -4,10 +4,10 @@ import Keyboard from "./Keyboard.js"
 import { nanoid } from "nanoid"
 
 export default function Game(props) {
+
   function handleKeyClick(key) {
     //Makes sure same key isnt pressed multiple times
     if (props.game.guesses.includes(key)) {
-      console.log("already clicked")
       return
     } else {
       //Otherwise updates state
@@ -26,9 +26,9 @@ export default function Game(props) {
       if (props.game.letters.every((letter) => props.game.correctGuesses.includes(letter))) {
         props.setHasWon(true)
         props.setGameState(2)
-        console.log("YOU WIN")
-        console.log(props.hasWon)
-      } else {
+      } else if (props.game.letters.includes(key)) {
+        return
+      } else{
         props.setGuessesLeft((prevGuesses) => prevGuesses - 1)
         if (props.guessesLeft === 0) {
           props.setGameState(2)
@@ -65,5 +65,6 @@ export default function Game(props) {
 // MAKE THE WIN / LOSE MESSAGE SHOW UP NOT ONE CLICK LATE
 // FIND A BETTER API
 // MOSTLY DONE // UPDATE CSS
+// DONE // UPDATED GAME LOGIC TO NOT REDUCE GUESSES LEFT AFTER CORRECT GUESS
 // DONE // FIND A SOLUTION TO THE INFINITE LOOP ON KEY PRESS...
 // DONE // ADD PLAY AGAIN BUTTON

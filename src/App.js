@@ -3,10 +3,11 @@ import { React, useState, useEffect } from "react"
 import Game from "./Game.js"
 import PostGame from "./PostGame.js"
 import image from "./images/hangman_figure.png"
+import axios from "axios"
 
 function App() {
   const [gameState, setGameState] = useState(0)
-  const [guessesLeft, setGuessesLeft] = useState(5)
+  const [guessesLeft, setGuessesLeft] = useState(10)
   const [hasWon, setHasWon] = useState(false)
   const [game, setGame] = useState({
     letters: [],
@@ -15,27 +16,33 @@ function App() {
     correctGuesses: [],
   })
 
-useEffect(() => {
-      fetch("https://api.api-ninjas.com/v1/randomword?type=noun")
-      .then((res) => res.json())
-      .then((data) =>
+  const options = {
+    method: "GET",
+    url: "https://random-words5.p.rapidapi.com/getRandom",
+    params: { minLength: "3", maxLength: "12" },
+    headers: {
+      "X-RapidAPI-Key": "2af4fb3cf9msh1cc550c484ebe41p1ae561jsne8bb383f0a16",
+      "X-RapidAPI-Host": "random-words5.p.rapidapi.com",
+    },
+  }
+
+  useEffect(() => {
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log("WORD:" + response.data)
         setGame((prevState) => ({
           ...prevState,
-          letters: [...data.word.toUpperCase()],
+          letters: [...response.data.toUpperCase()],
         }))
-      )
-},[])
+      })
+      .catch(function (error) {
+        console.error(error)
+      })
+  }, [])
 
   function startGame() {
     setHasWon(false)
-    // fetch("https://api.api-ninjas.com/v1/randomword?type=noun")
-    //   .then((res) => res.json())
-    //   .then((data) =>
-    //     setGame((prevState) => ({
-    //       ...prevState,
-    //       letters: [...data.word.toUpperCase()],
-    //     }))
-    //   )
     setGameState(1)
   }
 
@@ -51,7 +58,7 @@ useEffect(() => {
           letters: [...data.word.toUpperCase()],
         })
       )
-    setGuessesLeft(5)
+    setGuessesLeft(10)
     setGameState(1)
   }
 

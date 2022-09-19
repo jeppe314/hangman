@@ -1,11 +1,8 @@
 import React from "react"
 
 export default function PostGame(props) {
-  console.log(props.game)
-  console.log(props.guessesLeft)
-
   return (
-    <div class="postGame-container">
+    <div className="postGame-container">
       {props.guessesLeft <= 0 ? <h1>GAME OVER</h1> : <h1>YOU WIN</h1>}
 
       <div>

@@ -40,7 +40,6 @@ export default function Keyboard(props) {
   })
 
   function handleKeyPress(e) {
-    console.log("KEY PRESSED")
     if (e.keyCode >= 65 && e.keyCode <= 90) {
       props.handleClick(e.key.toUpperCase())
     }
