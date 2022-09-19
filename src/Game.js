@@ -4,7 +4,6 @@ import Keyboard from "./Keyboard.js"
 import { nanoid } from "nanoid"
 
 export default function Game(props) {
-
   function handleKeyClick(key) {
     //Makes sure same key isnt pressed multiple times
     if (props.game.guesses.includes(key)) {
@@ -28,7 +27,7 @@ export default function Game(props) {
         props.setGameState(2)
       } else if (props.game.letters.includes(key)) {
         return
-      } else{
+      } else {
         props.setGuessesLeft((prevGuesses) => prevGuesses - 1)
         if (props.guessesLeft === 0) {
           props.setGameState(2)
@@ -50,9 +49,7 @@ export default function Game(props) {
       <h3>Guesses left: {props.guessesLeft}</h3>
       <div>
         {word}
-        {!props.hasWon && (
-          <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />
-        )}
+        <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />
       </div>
     </div>
   )
@@ -61,10 +58,10 @@ export default function Game(props) {
 //TODO:
 // DONE // DISABLE MULTIPLE CLICKS ON SAME KEY
 // TILES SHOULDNT GENERATE NEW KEY EVERY RERENDER
-// MAKE ALL TILES APPEAR IN ONE ROW, NOT TWO WHEN THERE ARE LONG WORDS
+// DONE // MAKE ALL TILES APPEAR IN ONE ROW, NOT TWO WHEN THERE ARE LONG WORDS
 // MAKE THE WIN / LOSE MESSAGE SHOW UP NOT ONE CLICK LATE
-// FIND A BETTER API
-// MOSTLY DONE // UPDATE CSS
+// DONE // FIND A BETTER API
+// DONE // UPDATE CSS
 // DONE // UPDATED GAME LOGIC TO NOT REDUCE GUESSES LEFT AFTER CORRECT GUESS
 // DONE // FIND A SOLUTION TO THE INFINITE LOOP ON KEY PRESS...
 // DONE // ADD PLAY AGAIN BUTTON
