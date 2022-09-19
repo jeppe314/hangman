@@ -30,7 +30,6 @@ function App() {
     axios
       .request(options)
       .then(function (response) {
-        console.log("WORD:" + response.data)
         setGame((prevState) => ({
           ...prevState,
           letters: [...response.data.toUpperCase()],
