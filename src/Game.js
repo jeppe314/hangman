@@ -52,8 +52,6 @@ export default function Game(props) {
       {!props.hasWon && (
         <Keyboard key={nanoid()} game={props.game} handleClick={(key) => handleKeyClick(key)} />
       )}
-      {props.hasWon && <h1>YOU WIN</h1>}
-      {props.guessesLeft <= 0 && <h1>GAME OVER</h1>}
       
     </div>
   )
@@ -62,8 +60,9 @@ export default function Game(props) {
 //TODO:
 // DONE // DISABLE MULTIPLE CLICKS ON SAME KEY
 // TILES SHOULDNT GENERATE NEW KEY EVERY RERENDER
+// MAKE ALL TILES APPEAR IN ONE ROW, NOT TWO WHEN THERE ARE LONG WORDS
 // MAKE THE WIN / LOSE MESSAGE SHOW UP NOT ONE CLICK LATE
 // FIND A BETTER API
-// UPDATE CSS
-// FIND A SOLUTION TO THE INFINITE LOOP ON KEY PRESS...
-// ADD PLAY AGAIN BUTTON
+// MOSTLY DONE // UPDATE CSS
+// DONE // FIND A SOLUTION TO THE INFINITE LOOP ON KEY PRESS...
+// DONE // ADD PLAY AGAIN BUTTON

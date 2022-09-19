@@ -14,7 +14,7 @@ body {
   color: white;
   background: #63856a;
   background: -webkit-radial-gradient(center, ellipse cover, #63856a 1%, #3c5a40 100%);
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -33,15 +33,18 @@ button {
   font-weight: bold;
   font-size: 1.5em;
   border-radius: 10px;
-  background-color: rgb(8, 8, 8);
+  /* background-color: rgb(8, 8, 8); */
   color: white;
+  border: none;
+  background-color: transparent;
   border: 5px solid white;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: white;
-  color: black;
+  /* background-color: white;
+  color: black; */
+  border: 5px solid white;
 }
 
 .start-container {
@@ -51,6 +54,11 @@ button:hover {
   justify-content: center;
   gap: 1em;
   text-align: center;
+}
+
+.start-container h1 {
+  font-family: "Shadows Into Light";
+  font-size: 3em;
 }
 
 .hangman-image {
@@ -65,7 +73,7 @@ button:hover {
   align-content: center;
   flex-wrap: wrap;
   flex-direction: column;
-  padding: 1em;
+  padding: 2em 1em;
 }
 
 .game-container h1 {
@@ -86,6 +94,7 @@ button:hover {
 }
 
 .word {
+  max-width: 100%;
   font-size: 1em;
   display: flex;
   gap: 0.2em;
@@ -99,7 +108,7 @@ button:hover {
   width: 2em;
   border-radius: 0.2em;
   display: flex;
-  flex: 0 1 auto;
+  flex: 1 0 10px;
   justify-content: center;
 }
 
@@ -112,18 +121,29 @@ button:hover {
 }
 
 .keyboard {
-  width: 100%;
+  max-width: 90%;
   margin-top: 2em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.2em;
+  font-size: 0.8em;
+  border: 5px solid white;
+  padding: 1em;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .key {
   font-size: 1.5em;
-  background-color: rgb(51, 45, 45);
   padding: 0.3em;
   text-align: center;
+}
+
+/*MEDIA QUERIES*/
+
+@media (min-width: 800px) {
+  button {
+    border: 5px solid transparent;
+  }
 }
