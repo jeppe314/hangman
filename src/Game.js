@@ -1,9 +1,22 @@
-import React from "react"
+import { React, useEffect } from "react"
 import Tile from "./Tile.js"
 import Keyboard from "./Keyboard.js"
 import { nanoid } from "nanoid"
 
 export default function Game(props) {
+  const { game, setGameState, guessesLeft, setHasWon } = props
+
+  // RUNS EFFECT EVERY TIME A GUESS IS MADE
+  useEffect(() => {
+    console.log("effect")
+    if (game.letters.every((letter) => game.correctGuesses.includes(letter))) {
+      setTimeout(() => setGameState(2), 1000)
+      // setHasWon(true) ??
+    } else if (guessesLeft === 0) {
+      setGameState(2)
+    }
+  }, [game.guesses])
+
   function handleKeyClick(key) {
     //Makes sure same key isnt pressed multiple times
     if (props.game.guesses.includes(key)) {
@@ -20,18 +33,13 @@ export default function Game(props) {
           ? [...prevState.correctGuesses, key]
           : [...prevState.correctGuesses],
       }))
-
-      //Checks if user has won (still doesnt update immediately, only after one more letter click)
-      if (props.game.letters.every((letter) => props.game.correctGuesses.includes(letter))) {
-        props.setHasWon(true)
-        props.setGameState(2)
-      } else if (props.game.letters.includes(key)) {
+      // IF THE GUESSED LETTER IS CORRECT, DO NOTHING
+      if (props.game.letters.includes(key)) {
         return
-      } else {
+      }
+      // IF ITS WRONG, SUBTRACT ONE GUESS
+      else {
         props.setGuessesLeft((prevGuesses) => prevGuesses - 1)
-        if (props.guessesLeft === 0) {
-          props.setGameState(2)
-        } else return
       }
     }
   }

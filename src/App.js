@@ -18,27 +18,32 @@ function App() {
 
   const options = {
     method: "GET",
-    url: "https://random-words5.p.rapidapi.com/getRandom",
-    params: { minLength: "3", maxLength: "12" },
+    url: "https://random-word-generator2.p.rapidapi.com/word.php",
+    params: { generator: "words", api_key: "5w36eV0FZJu9QIPlpR18" },
     headers: {
       "X-RapidAPI-Key": "2af4fb3cf9msh1cc550c484ebe41p1ae561jsne8bb383f0a16",
-      "X-RapidAPI-Host": "random-words5.p.rapidapi.com",
+      "X-RapidAPI-Host": "random-word-generator2.p.rapidapi.com",
     },
   }
 
   useEffect(() => {
+    console.log("Fetching word")
     axios
       .request(options)
       .then(function (response) {
-        setGame((prevState) => ({
-          ...prevState,
-          letters: [...response.data.toUpperCase()],
+        console.log(response.data.word)
+        setGame(({
+          guesses: [],
+          wrongGuesses: [],
+          correctGuesses: [],
+          letters: [...response.data.word.toUpperCase()],
         }))
       })
       .catch(function (error) {
         console.error(error)
       })
-  }, [])
+      //See if it works with this dependency
+  }, [hasWon])
 
   function startGame() {
     setHasWon(false)
@@ -46,17 +51,7 @@ function App() {
   }
 
   function restartGame() {
-    setHasWon(false)
-    fetch("https://api.api-ninjas.com/v1/randomword?type=noun")
-      .then((res) => res.json())
-      .then((data) =>
-        setGame({
-          guesses: [],
-          wrongGuesses: [],
-          correctGuesses: [],
-          letters: [...data.word.toUpperCase()],
-        })
-      )
+    setHasWon(true)
     setGuessesLeft(10)
     setGameState(1)
   }
