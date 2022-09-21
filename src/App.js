@@ -27,33 +27,34 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("Fetching word")
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data.word)
-        setGame(({
+        setGame({
           guesses: [],
           wrongGuesses: [],
           correctGuesses: [],
           letters: [...response.data.word.toUpperCase()],
-        }))
+        })
       })
       .catch(function (error) {
         console.error(error)
       })
-      //See if it works with this dependency
   }, [hasWon])
 
   function startGame() {
-    setHasWon(false)
     setGameState(1)
   }
 
   function restartGame() {
-    setHasWon(true)
-    setGuessesLeft(10)
+    setGame(prevState => ({
+      ...prevState,
+      correctGuesses: [],
+      guesses: []
+    }))
+    setHasWon(!hasWon)
     setGameState(1)
+    setGuessesLeft(10)
   }
 
   const startPage = (

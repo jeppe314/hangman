@@ -8,13 +8,11 @@ export default function Game(props) {
 
   // RUNS EFFECT EVERY TIME A GUESS IS MADE
   useEffect(() => {
-    console.log("effect")
     if (game.letters.every((letter) => game.correctGuesses.includes(letter))) {
       setTimeout(() => setGameState(2), 1000)
-      // setHasWon(true) ??
     } else if (guessesLeft === 0) {
-      setGameState(2)
-    }
+      setTimeout(() => setGameState(2), 1000)
+    } else return
   }, [game.guesses])
 
   function handleKeyClick(key) {
@@ -36,7 +34,7 @@ export default function Game(props) {
       // IF THE GUESSED LETTER IS CORRECT, DO NOTHING
       if (props.game.letters.includes(key)) {
         return
-      }
+      } else if (props.guessesLeft <= 0) return
       // IF ITS WRONG, SUBTRACT ONE GUESS
       else {
         props.setGuessesLeft((prevGuesses) => prevGuesses - 1)
